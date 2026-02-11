@@ -21,7 +21,15 @@ MAP estimation is performed using (1) an iterative gradient-ascent routine and (
 - `notebooks/` exploratory notebook(s) (optional)
 
 ## Setup
-### Option A: Conda (recommended)
+### Conda (recommended)
 ```bash
 conda env create -f environment.yml
 conda activate 3f8-ftr
+```
+
+### pip (alternative)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
