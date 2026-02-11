@@ -3,10 +3,10 @@ from scipy.optimize import fmin_l_bfgs_b
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-
 HERE = Path(__file__).resolve().parent
-X = np.loadtxt(HERE / "x.txt")
-y = np.loadtxt(HERE / "y.txt")
+DATA_DIR = HERE / "data"
+X = np.loadtxt(DATA_DIR / "x.txt")
+y = np.loadtxt(DATA_DIR / "y.txt")
 
 permutation = np.random.permutation(X.shape[ 0 ])
 X = X[ permutation, : ]
