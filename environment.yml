@@ -1,0 +1,11 @@
+name: 3f8-ftr
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy=1.26
+  - scipy
+  - matplotlib
+  - pandas
+  - jupyter
+  - ipykernel
