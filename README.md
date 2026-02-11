@@ -16,7 +16,6 @@ MAP estimation is performed using (1) an iterative gradient-ascent routine and (
   - Predictive contour plots / decision boundary visualisation
 
 ## Repository Structure
-- `src/` core implementation (objective, gradients, optimisers, Laplace predictive)
 - `data/raw/` input data (`x.txt`, `y.txt`)
 - `report/` LaTeX full technical report (FTR)
 - `notebooks/` exploratory notebook(s) (optional)
