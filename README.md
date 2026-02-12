@@ -47,3 +47,10 @@ The code follows the Full Technical Report (FTR) pipeline (Exercises **A–F**):
 ```bash
 conda env create -f environment.yml
 conda activate 3f8-ftr
+```
+
+### pip (alternative)
+If you prefer pip, install the following packages (minimum):
+- numpy
+- matplotlib
+- scipy
