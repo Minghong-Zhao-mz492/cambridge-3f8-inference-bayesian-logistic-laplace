@@ -1,35 +1,49 @@
-# Bayesian Logistic Regression with Laplace Approximation (3F8 Inference FTR)
+# Bayesian Logistic Regression with Laplace Approximation (Cambridge 3F8 Inference FTR)
 
-This repository implements a Bayesian binary logistic regression model and applies the Laplace approximation for predictive inference.  
-MAP estimation is performed using (1) an iterative gradient-ascent routine and (2) L-BFGS-B via SciPy, enabling a direct comparison of convergence behaviour and predictive performance.
+This repository contains a complete, reproducible implementation of **Bayesian binary logistic regression** with an **RBF feature expansion**, using the **Laplace approximation** for approximate posterior inference and predictive probabilities.
 
-## Features
-- Bayesian logistic regression with Gaussian prior (L2 regularisation)
-- MAP estimation:
-  - Iterative gradient ascent
-  - L-BFGS-B (quasi-Newton)
+The code follows the Full Technical Report (FTR) pipeline (Exercises **A–F**):
+- obtain the **MAP** estimate by optimising the log-posterior,
+- compute the **Laplace approximation** (Gaussian posterior around the MAP),
+- perform **evidence-based hyper-parameter tuning** for the RBF basis via a **10×10 grid search** visualised with **heat maps**.
+
+---
+
+## Highlights
+- Bayesian logistic regression with an isotropic Gaussian prior (L2 regularisation / weight decay)
+- MAP solvers:
+  - iterative gradient ascent (baseline / sanity check)
+  - L-BFGS-B (SciPy) for fast, stable optimisation
 - Laplace approximation:
-  - Hessian of the negative log-posterior
-  - Predictive probability using the logistic-Gaussian approximation
-- Metrics & visualisations:
-  - Average log-likelihood traces (train/test)
-  - Predictive contour plots / decision boundary visualisation
+  - Hessian of the negative log-posterior and posterior covariance via matrix inverse
+  - predictive probability using the standard logistic–Gaussian approximation
+- Evidence-based tuning:
+  - Laplace-approximated log evidence computed over a 10×10 grid of \((\sigma_0^2, l)\)
+  - heat map visualisation (coarse grid + optional refinement grid)
+- Outputs:
+  - log-likelihood traces (train/test)
+  - contour plots of predictive probabilities / decision boundary
+  - confusion matrices (as fractions)
+
+---
 
 ## Repository Structure
-- `data/raw/` input data (`x.txt`, `y.txt`)
-- `report/` LaTeX full technical report (FTR)
-- `notebooks/` exploratory notebook(s) (optional)
+- `data/`  
+  Input dataset files (e.g. `X.txt`, `y.txt`).
+- `report/`  
+  LaTeX source for the Full Technical Report (FTR) and the Short Lab Report.
+- `figures/`  
+  Generated plots and figures used in the report (contours, heat maps, etc.).
+- Top-level Python scripts (main runnable code for exercises):
+  - `3f8_ftr_exercises_a_to_f.py` — end-to-end run for Exercises A–F  
+  - `3F8_code_ftr_exercise_a_d.py` — earlier checkpoint for Exercises A–D  
+  - `3F8_code_ftr_exercise_a_d_refined.py` — refined A–D version / experiments
 
-## Setup
+---
+
+## Environment / Setup
+
 ### Conda (recommended)
 ```bash
 conda env create -f environment.yml
 conda activate 3f8-ftr
-```
-
-### pip (alternative)
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
